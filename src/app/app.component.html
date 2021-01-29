@@ -1,10 +1,17 @@
 
 <app-header></app-header>
 
+
+
 <div class="container">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
         <br><br>
+
+        <app-clientes></app-clientes> 
+
+        <br>
+
         <h3>{{ titulo }}</h3>
         <!--<h4>La base es <strong>{{ base }}</strong></h4>-->
         <br>
@@ -18,7 +25,9 @@
         <br>
 
         <!--Ejemplo tabla ngFor-->
-        <table class="table">
+        <h4>Ejemplo de ngFor</h4>
+        <hr>
+        <table class="table" *ngIf="habilitar == true">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -33,10 +42,13 @@
             </tbody>
           </table>
 
+          <br>
+          <h5>Ejemplo de ngIf</h5>
+          <button class="btn btn-outline-success" (click) ="setHabilitar();">{{ habilitar == true ? "Ocultar" : "Mostrar" }}</button>
+
 
     </div>
-    <div class="col-md-4"></div>
+    <div class="col-md-2"></div>
 </div>
 
-<app-footer></app-footer>
 

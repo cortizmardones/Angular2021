@@ -12,6 +12,11 @@ export class AppComponent {
   public base:number = 5;
 
   public lenguajes:string[] = ['Typescript','Javascript','Java','C#'];
+  public habilitar:boolean = true;
+
+  setHabilitar(): void {
+    this.habilitar = (this.habilitar==true)? false : true;
+  }
 
 
   acumular(valor : number){
