@@ -16,4 +16,15 @@ export class ClientesComponent  {
     {id: 5 , nombre : 'Jose' , apellido : 'bernales' , email : 'jbernales@gmail.com' , createAt : '2017-12-11'}
   ];
 
+  public tabla: boolean = true;
+  public textoBoton: string ="Ocultar Tabla";
+  public tituloTabla: string = "Listado de clientes";
+
+  ocultarTabla() : void {
+    this.tabla = (this.tabla==true) ? false : true;
+    this.textoBoton = (this.tabla==true) ? "Ocultar Tabla" : "Mostrar Tabla"; 
+    this.tituloTabla = (this.tabla==true) ? "Listado de clientes" : "Tabla vacía"; 
+  }
+
 }
+
