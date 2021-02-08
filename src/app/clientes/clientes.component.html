@@ -5,10 +5,11 @@
         <thead class="table-dark">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
-            <th scope="col">Email</th>
-            <th scope="col">Fecha</th>
+            <th scope="col"><fa-icon [icon]="faAddressBook"></fa-icon> Nombre</th>
+            <th scope="col"><fa-icon [icon]="faAddressBook"></fa-icon> Apellido</th>
+            <th scope="col"><fa-icon [icon]="faMailBulk"></fa-icon> Email</th>
+            <th scope="col"><fa-icon [icon]="faCalendarAlt"></fa-icon> Fecha</th>
+            <th scope="col"><fa-icon [icon]="faCity"></fa-icon> Comuna</th>
           </tr>
         </thead>
         <tbody>
@@ -18,11 +19,11 @@
             <td>{{ cliente.apellido }}</td>
             <td>{{ cliente.email }}</td>
             <td>{{ cliente.createAt }}</td>
+            <td>{{ cliente.comuna }}</td>
           </tr>
         </tbody>
       </table>
 
-      <button class="btn btn-success" (click)="ocultarTabla()">{{ textoBoton }}</button>
+      <br>
+      <button class="btn btn-primary" (click)="ocultarTabla()">{{ textoBoton }}</button>
       <br><br>
-
-
