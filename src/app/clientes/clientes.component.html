@@ -34,7 +34,7 @@
       <button class="btn btn-primary" (click)="ocultarTabla()">{{ textoBoton }}</button>
       <br><br><br>
 
-      <!--Div para editar - (Se pueden reutilizar pero prefiero separarlos para un mejor manejo)-->
+      <!--Div para editar-->
       <div *ngIf="divEdit == true">
         <h4><fa-icon [icon]="faEdit"></fa-icon> Editar Usuario</h4>
         <input type="text" value="{{ nombre }}" placeholder="Ingrese su nombre" required><br>
@@ -42,5 +42,5 @@
         <input type="email" value="{{ email }}" placeholder="Ingrese su email" required><br>
         <input type="text" value="{{ createAt }}" placeholder="Ingrese su fecha de nacimiento" required><br>
         <input type="text" value="{{ comuna }}" placeholder="Ingrese su comuna" required><br><br>
-        <button class="btn btn-warning" (click)="guardarCambiosEditar(nombre,apellido,email,createAt,comuna)"><fa-icon [icon]="faEdit"></fa-icon> Ingresar</button>
+        <button class="btn btn-warning" (click)="guardarCambiosEditar(nombre,apellido,email,createAt,comuna)"><fa-icon [icon]="faEdit"></fa-icon> Modificar</button>
       </div>

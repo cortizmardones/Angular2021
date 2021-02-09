@@ -28,7 +28,7 @@ export class ClientesComponent  {
   faTrashAlt = faTrashAlt;
   faUserPlus = faUserPlus;
 
-//Arreglo para llenar con los datos la tabla
+  //Arreglo para llenar con los datos la tabla
   public Clientes : Cliente [] = [
     {id: 1 , nombre : 'Esteban' , apellido : 'Bustos' , email : 'ebustos@gmail.com' , createAt : '1991-07-24' , comuna : 'San Bernardo'},
     {id: 2 , nombre : 'Carlos' , apellido : 'Ortiz' , email : 'cortizmardones@gmail.com' , createAt : '1988-03-22', comuna : 'Puente Alto'},
@@ -39,7 +39,7 @@ export class ClientesComponent  {
     {id: 7 , nombre : 'Elias' , apellido : 'Sanchez' , email : 'esanchez@gmail.com' , createAt : '1993-04-15', comuna : 'Maipú'}
   ];
 
-//Objeto vacio para agregarlo al editar
+  //Objeto vacio para agregarlo al editar
   public objetoCliente : Cliente = {id:50,nombre:'',apellido:'',email:'',createAt:'',comuna:''};
 
   //Campos para las interaciones de la tabla
@@ -72,11 +72,6 @@ export class ClientesComponent  {
     this.comuna = comuna;
   }
 
-  eliminar( position: number) : void {
-    console.log("Eliminar...");
-    this.Clientes.splice( position , 1 );
-  }
-
   guardarCambiosEditar(nombre: string , apellido : string , email : string , createAt : string , comuna : string) : void {
     console.log("Guardando cambios");
     this.objetoCliente.nombre = nombre;
@@ -85,6 +80,15 @@ export class ClientesComponent  {
     this.objetoCliente.createAt = createAt;
     this.objetoCliente.comuna = comuna;
     this.Clientes.push(this.objetoCliente);
+    //Despues de que se agrega el item hay que ocultar el formulario
+    this.divEdit = false;
   }
+
+  eliminar( position: number) : void {
+    console.log("Eliminar...");
+    this.Clientes.splice( position , 1 );
+  }
+
+
 
 }
