@@ -42,7 +42,13 @@ export class ClientesComponent  {
     {id: 10 , nombre : 'Elias' , apellido : 'Sanchez' , email : 'esanchez@gmail.com' , createAt : '1993-04-15', comuna : 'Maipú'}
   ];
 
-  //Objeto vacio para agregarlo al editar
+  //Propiedades y objetos para agregar usuarios nuevos.
+  public divAdd: boolean = false;
+  public nombre : string = '';
+  public apellido : string = '';
+  public email : string = '';
+  public createAt : string = '';
+  public comuna : string = '';
   public objetoCliente : Cliente = {id:0,nombre:'',apellido:'',email:'',createAt:'',comuna:''};
 
   //Campos para las interaciones de la tabla
@@ -52,12 +58,6 @@ export class ClientesComponent  {
 
   //Campo para las interacciones de la seccion editar
   public divEdit: boolean = false;
-  public divAdd: boolean = false;
-  public nombre : string = '';
-  public apellido : string = '';
-  public email : string = '';
-  public createAt : string = '';
-  public comuna : string = '';
 
   //Funciones para la interactividad
   ocultarTabla() : void {
@@ -65,6 +65,58 @@ export class ClientesComponent  {
     this.textoBoton = (this.tabla==true) ? "Ocultar Tabla" : "Mostrar Tabla";
     this.tituloTabla = (this.tabla==true) ? "Listado de clientes" : "Tabla vacía";
   }
+
+  //Opciónes para agregar Usuarios nuevos
+  agregarUsuarioBtn() : void {
+    this.divAdd = true;
+  }
+
+  agregarUsuario() : void {
+
+    //Cada vez que entra acá crear un nuevo objeto para que no me los sobreescriba.
+    let nuevoCliente = new Cliente();
+    nuevoCliente.nombre = this.nombre;
+    nuevoCliente.apellido = this.apellido;
+    nuevoCliente.email = this.email;
+    nuevoCliente.createAt = this.createAt;
+    nuevoCliente.comuna = this.comuna;
+    //Agregar el objeto nuevo en el fondo del array
+    this.Clientes.push(nuevoCliente);
+
+    //Limpiar los input luego de utilizarlos
+    this.nombre='';
+    this.apellido='';
+    this.email='';
+    this.createAt='';
+    this.comuna='';
+    //Ocultar el formulario
+    this.divAdd = false;
+  }
+
+
+  //Opcion eliminar
+  eliminar( position: number) : void {
+    console.log("Eliminar...");
+    this.Clientes.splice( position , 1 );
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   //Opcion de editar
@@ -80,6 +132,7 @@ export class ClientesComponent  {
   }
   guardarCambiosEditar(nombre: string , apellido : string , email : string , createAt : string , comuna : string) : void {
     console.log("Guardando cambios");
+
     this.objetoCliente.nombre = nombre;
     this.objetoCliente.apellido = apellido;
     this.objetoCliente.email = email;
@@ -88,27 +141,6 @@ export class ClientesComponent  {
     this.Clientes.push(this.objetoCliente);
     //Despues de que se agrega el item hay que ocultar el formulario
     this.divEdit = false;
-  }
-
-  //Opción agregar
-  agregarUsuarioBtn() : void {
-    this.divAdd = true;
-  }
-
-  agregarUsuario() : void {
-    this.objetoCliente.nombre = this.nombre;
-    this.objetoCliente.nombre = this.apellido;
-    this.objetoCliente.nombre = this.email;
-    this.objetoCliente.nombre = this.createAt;
-    this.objetoCliente.nombre = this.comuna;
-    this.Clientes.push(this.objetoCliente);
-  }
-
-
-  //Opcion eliminar
-  eliminar( position: number) : void {
-    console.log("Eliminar...");
-    this.Clientes.splice( position , 1 );
   }
 
 
