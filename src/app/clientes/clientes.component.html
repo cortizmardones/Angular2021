@@ -38,12 +38,14 @@
       <!--Div para editar-->
       <div *ngIf="divAdd == true">
         <h4><fa-icon [icon]="faEdit"></fa-icon> Editar Usuario</h4>
-        <form (submit)="agregarUsuario( $event )">
-          <input type="text" placeholder="Ingrese su nombre" name="nombre" required><br>
-          <input type="text" placeholder="Ingrese su apellido" name="apellido" required><br>
-          <input type="email" placeholder="Ingrese su email" name="email" required><br>
-          <input type="text" placeholder="Ingrese su fecha de nacimiento" name="createAt" required><br>
-          <input type="text" placeholder="Ingrese su comuna" name="comuna"required><br><br>
+        <form (ngSubmit)="agregarUsuario()">
+          <!--ngModel  se coloca con [] para que se asocie a un valor de la clase ts y () para que escuche el evento al cambiar el valor del input-->
+          <!--Al ocupar ngMOdel necesita obligadamente la propiedad name del html-->
+          <input type="text" placeholder="Ingrese su nombre" name="nombre" [(ngModel)]="nombre" required><br>
+          <input type="text" placeholder="Ingrese su apellido" name="apellido" [(ngModel)]="apellido" required><br>
+          <input type="email" placeholder="Ingrese su email" name="email" [(ngModel)]="email" required><br>
+          <input type="text" placeholder="Ingrese su fecha de nacimiento" name="createAt" [(ngModel)]="createAt" required><br>
+          <input type="text" placeholder="Ingrese su comuna" name="comuna" [(ngModel)]="comuna" required><br><br>
           <button class="btn btn-success"><fa-icon [icon]="faEdit"></fa-icon> Guardar</button>
         </form>
       </div>

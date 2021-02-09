@@ -43,7 +43,7 @@ export class ClientesComponent  {
   ];
 
   //Objeto vacio para agregarlo al editar
-  public objetoCliente : Cliente = {id:50,nombre:'',apellido:'',email:'',createAt:'',comuna:''};
+  public objetoCliente : Cliente = {id:0,nombre:'',apellido:'',email:'',createAt:'',comuna:''};
 
   //Campos para las interaciones de la tabla
   public tabla: boolean = true;
@@ -92,13 +92,16 @@ export class ClientesComponent  {
 
   //Opción agregar
   agregarUsuarioBtn() : void {
-    console.log("agregarUsuarioBtn");
     this.divAdd = true;
   }
 
-  agregarUsuario( evento : any ) : void {
-    evento.preventDefault();
-    console.log(evento);
+  agregarUsuario() : void {
+    this.objetoCliente.nombre = this.nombre;
+    this.objetoCliente.nombre = this.apellido;
+    this.objetoCliente.nombre = this.email;
+    this.objetoCliente.nombre = this.createAt;
+    this.objetoCliente.nombre = this.comuna;
+    this.Clientes.push(this.objetoCliente);
   }
 
 

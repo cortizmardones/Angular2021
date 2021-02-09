@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DbzModule } from './dbz/dbz.module';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ClientesComponent } from './clientes/clientes.component';
+
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { ClientesComponent } from './clientes/clientes.component';
   imports: [
     BrowserModule,
     FontAwesomeModule,
-    DbzModule
+    DbzModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
