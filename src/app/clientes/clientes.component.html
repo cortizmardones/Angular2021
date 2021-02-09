@@ -37,28 +37,37 @@
 
       <!--Div para agregar usuarios-->
       <div *ngIf="divAdd == true" class="row">
-        <div class="col-md-3">
+        <div class="col-md-6">
           <h4><fa-icon [icon]="faPlusSquare"></fa-icon> Agregar Usuario</h4>
           <!--Con ngSubmit evito que la pagina haga un refresh cada vez que presiono un boton dentro del formulario-->
           <form (ngSubmit)="agregarUsuario()">
             <!--ngModel  se coloca con [] para que se asocie a un valor de la clase ts y () para que escuche el evento al cambiar el valor del input-->
             <!--Al ocupar ngMOdel necesita obligadamente la propiedad name del html-->
-            <input type="text" class="form-control" placeholder="Ingrese su nombre" name="nombre" [(ngModel)]="nombre" autocomplete="off">
-            <input type="text" class="form-control" placeholder="Ingrese su apellido" name="apellido" [(ngModel)]="apellido" autocomplete="off">
-            <input type="email" class="form-control" placeholder="Ingrese su email" name="email" [(ngModel)]="email" autocomplete="off">
-            <input type="date" class="form-control" placeholder="Ingrese su fecha de nacimiento" name="createAt" [(ngModel)]="createAt">
+            <label>Nombre</label>
+            <input type="text" class="form-control" placeholder="Ingrese su nombre" name="nombre" [(ngModel)]="nombre" autocomplete="off"><br>
+            <label>Apellido</label>
+            <input type="text" class="form-control" placeholder="Ingrese su apellido" name="apellido" [(ngModel)]="apellido" autocomplete="off"><br>
+            <label>Email</label>
+            <input type="email" class="form-control" placeholder="Ingrese su email" name="email" [(ngModel)]="email" autocomplete="off"><br>
+            <label>Email Alternativo</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Username" aria-label="Username">
+              <span class="input-group-text">@</span>
+              <input type="text" class="form-control" placeholder="Server" aria-label="Server">
+            </div>
+            <label>Fecha de nacimiento</label>
+            <input type="date" class="form-control" placeholder="Ingrese su fecha de nacimiento" name="createAt" [(ngModel)]="createAt"><br>
+            <label>Comuna</label>
             <input type="text" class="form-control" placeholder="Ingrese su comuna" name="comuna" [(ngModel)]="comuna" autocomplete="off"><br>
             <button class="btn btn-success form-control"><fa-icon [icon]="faPlusSquare"></fa-icon> Guardar usuario</button>
           </form>
         </div>
-        <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
+        <div class="col-md-6"></div>
       </div>
 
       <!--Div para editar-->
       <div *ngIf="divEdit == true" class="row">
-          <div class="col-md-3">
+          <div class="col-md-6">
           <h4><fa-icon [icon]="faEdit"></fa-icon> Editar Usuario</h4>
           <input type="text" class="form-control" value="{{ nombre }}" placeholder="Ingrese su nombre" autocomplete="off" required>
           <input type="text" class="form-control" value="{{ apellido }}" placeholder="Ingrese su apellido" autocomplete="off" required>
@@ -67,8 +76,6 @@
           <input type="text" class="form-control" value="{{ comuna }}" placeholder="Ingrese su comuna" autocomplete="off" required><br>
           <button class="btn btn-warning form-control" (click)="guardarCambiosEditar(nombre,apellido,email,createAt,comuna)"><fa-icon [icon]="faEdit"></fa-icon> Modificar</button>
         </div>
-        <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
+        <div class="col-md-6"></div>
       </div>
       <br><br><br>
