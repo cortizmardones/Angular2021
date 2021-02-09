@@ -23,13 +23,24 @@
             <td>{{ cliente.email }}</td>
             <td>{{ cliente.createAt }}</td>
             <td>{{ cliente.comuna }}</td>
-            <td><button class="btn btn-outline-warning form-control"      (click)="editar(cliente.nombre,cliente.apellido)">   <fa-icon [icon]="faEdit">     </fa-icon> Editar</button></td>
-            <td><button class="btn btn-outline-danger form-control"       (click)="eliminar(indice)"> <fa-icon [icon]="faTrashAlt"> </fa-icon> Eliminar</button></td>
+            <td><button class="btn btn-outline-warning form-control" (click)="editar(cliente.nombre,cliente.apellido,cliente.email,cliente.createAt,cliente.comuna)"><fa-icon [icon]="faEdit"></fa-icon> Editar</button></td>
+            <td><button class="btn btn-outline-danger form-control" (click)="eliminar(indice)"> <fa-icon [icon]="faTrashAlt"> </fa-icon> Eliminar</button></td>
           </tr>
         </tbody>
       </table>
-      <hr>
 
-      <br>
+      <hr><br>
+      <!--<button class="btn btn-success" (click)="editar(nombre,apellido,email,createAt,comuna)"><fa-icon [icon]="faUserPlus"> </fa-icon> Agregar Usuario</button>-->
       <button class="btn btn-primary" (click)="ocultarTabla()">{{ textoBoton }}</button>
-      <br><br>
+      <br><br><br>
+
+      <!--Div para editar - (Se pueden reutilizar pero prefiero separarlos para un mejor manejo)-->
+      <div *ngIf="divEdit == true">
+        <h4><fa-icon [icon]="faEdit"></fa-icon> Editar Usuario</h4>
+        <input type="text" value="{{ nombre }}" placeholder="Ingrese su nombre" required><br>
+        <input type="text" value="{{ apellido }}" placeholder="Ingrese su apellido" required><br>
+        <input type="email" value="{{ email }}" placeholder="Ingrese su email" required><br>
+        <input type="text" value="{{ createAt }}" placeholder="Ingrese su fecha de nacimiento" required><br>
+        <input type="text" value="{{ comuna }}" placeholder="Ingrese su comuna" required><br><br>
+        <button class="btn btn-warning" (click)="guardarCambiosEditar(nombre,apellido,email,createAt,comuna)"><fa-icon [icon]="faEdit"></fa-icon> Ingresar</button>
+      </div>
