@@ -30,9 +30,23 @@
       </table>
 
       <hr><br>
-      <!--<button class="btn btn-success" (click)="editar(nombre,apellido,email,createAt,comuna)"><fa-icon [icon]="faUserPlus"> </fa-icon> Agregar Usuario</button>-->
+      <button class="btn btn-success" (click)="agregarUsuarioBtn()"><fa-icon [icon]="faUserPlus"> </fa-icon> Agregar Usuario</button>
       <button class="btn btn-primary" (click)="ocultarTabla()">{{ textoBoton }}</button>
       <br><br><br>
+
+
+      <!--Div para editar-->
+      <div *ngIf="divAdd == true">
+        <h4><fa-icon [icon]="faEdit"></fa-icon> Editar Usuario</h4>
+        <form (submit)="agregarUsuario( $event )">
+          <input type="text" placeholder="Ingrese su nombre" name="nombre" required><br>
+          <input type="text" placeholder="Ingrese su apellido" name="apellido" required><br>
+          <input type="email" placeholder="Ingrese su email" name="email" required><br>
+          <input type="text" placeholder="Ingrese su fecha de nacimiento" name="createAt" required><br>
+          <input type="text" placeholder="Ingrese su comuna" name="comuna"required><br><br>
+          <button class="btn btn-success"><fa-icon [icon]="faEdit"></fa-icon> Guardar</button>
+        </form>
+      </div>
 
       <!--Div para editar-->
       <div *ngIf="divEdit == true">

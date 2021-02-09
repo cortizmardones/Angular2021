@@ -52,6 +52,7 @@ export class ClientesComponent  {
 
   //Campo para las interacciones de la seccion editar
   public divEdit: boolean = false;
+  public divAdd: boolean = false;
   public nombre : string = '';
   public apellido : string = '';
   public email : string = '';
@@ -65,16 +66,18 @@ export class ClientesComponent  {
     this.tituloTabla = (this.tabla==true) ? "Listado de clientes" : "Tabla vacía";
   }
 
+
+  //Opcion de editar
   editar( nombre: string , apellido : string , email : string , createAt : string , comuna : string) : void {
     console.log("Editando a : " + nombre + " " + apellido);
     this.divEdit = true;
+    this.divAdd = false;
     this.nombre = nombre;
     this.apellido = apellido;
     this.email = email;
     this.createAt = createAt;
     this.comuna = comuna;
   }
-
   guardarCambiosEditar(nombre: string , apellido : string , email : string , createAt : string , comuna : string) : void {
     console.log("Guardando cambios");
     this.objetoCliente.nombre = nombre;
@@ -87,6 +90,19 @@ export class ClientesComponent  {
     this.divEdit = false;
   }
 
+  //Opción agregar
+  agregarUsuarioBtn() : void {
+    console.log("agregarUsuarioBtn");
+    this.divAdd = true;
+  }
+
+  agregarUsuario( evento : any ) : void {
+    evento.preventDefault();
+    console.log(evento);
+  }
+
+
+  //Opcion eliminar
   eliminar( position: number) : void {
     console.log("Eliminar...");
     this.Clientes.splice( position , 1 );
