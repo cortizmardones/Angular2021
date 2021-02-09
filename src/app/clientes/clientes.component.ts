@@ -46,13 +46,13 @@ export class ClientesComponent  {
     this.tituloTabla = (this.tabla==true) ? "Listado de clientes" : "Tabla vacía";
   }
 
-  editar() : void {
-    console.log("Editar...");
+  editar( nombre: string , apellido : string ) : void {
+    console.log("Editando a : " + nombre + " " + apellido);
   }
 
-  eliminar( pos: number) : void {
+  eliminar( position: number) : void {
     console.log("Eliminar...");
-    this.Clientes.splice( pos , 1 );
+    this.Clientes.splice( position , 1 );
   }
 
 }
