@@ -11,6 +11,7 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-clientes',
@@ -29,6 +30,7 @@ export class ClientesComponent  {
   faTrashAlt = faTrashAlt;
   faUserPlus = faUserPlus;
   faPlusSquare = faPlusSquare;
+  faEyeSlash = faEyeSlash;
 
   //Arreglo para llenar con los datos la tabla
   public Clientes : Cliente [] = [
@@ -36,9 +38,9 @@ export class ClientesComponent  {
     {id: 2 , nombre : 'Carlos' , apellido : 'Ortiz' , email : 'cortizmardones@gmail.com' , createAt : '1988-03-22', comuna : 'Puente Alto'},
     {id: 3 , nombre : 'Marcelo' , apellido : 'Veloso' , email : 'mveloso@gmail.com' , createAt : '1993-12-09', comuna : 'Santiago'},
     {id: 4 , nombre : 'Francisco' , apellido : 'Cancino' , email : 'fcancino@gmail.com' , createAt : '1985-04-03', comuna : 'Puente Alto'},
-    {id: 5 , nombre : 'Jose' , apellido : 'bernales' , email : 'jbernales@gmail.com' , createAt : '2017-12-11', comuna : 'Coñaripe'},
+    {id: 5 , nombre : 'Jose' , apellido : 'Bernales' , email : 'jbernales@gmail.com' , createAt : '2017-12-11', comuna : 'Coñaripe'},
     {id: 6 , nombre : 'Ricardo' , apellido : 'Soto' , email : 'rsoto@gmail.com' , createAt : '1993-11-03', comuna : 'Colina 2'},
-    {id: 7 , nombre : 'Camilo' , apellido : 'calbuqoy' , email : 'ccalbuqoy@gmail.com' , createAt : '1993-11-03', comuna : 'Peñaflor'},
+    {id: 7 , nombre : 'Camilo' , apellido : 'Calbuqoy' , email : 'ccalbuqoy@gmail.com' , createAt : '1993-11-03', comuna : 'Peñaflor'},
     {id: 8 , nombre : 'Patricio' , apellido : 'Estrella' , email : 'pestrella@gmail.com' , createAt : '1990-08-29', comuna : 'Fondo de Bikini'},
     {id: 9 , nombre : 'Gonzalo' , apellido : 'Fernandez' , email : 'gfernandez@gmail.com' , createAt : '1985-06-02', comuna : 'Buin'},
     {id: 10 , nombre : 'Elias' , apellido : 'Sanchez' , email : 'esanchez@gmail.com' , createAt : '1993-04-15', comuna : 'Maipú'}
@@ -71,6 +73,7 @@ export class ClientesComponent  {
   //Opciónes para agregar Usuarios nuevos
   agregarUsuarioBtn() : void {
     this.divAdd = true;
+    this.divEdit = false;
   }
 
   agregarUsuario() : void {
