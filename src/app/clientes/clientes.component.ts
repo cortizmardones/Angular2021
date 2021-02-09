@@ -36,7 +36,10 @@ export class ClientesComponent  {
     {id: 4 , nombre : 'Francisco' , apellido : 'Cancino' , email : 'fcancino@gmail.com' , createAt : '1985-04-03', comuna : 'Puente Alto'},
     {id: 5 , nombre : 'Jose' , apellido : 'bernales' , email : 'jbernales@gmail.com' , createAt : '2017-12-11', comuna : 'Coñaripe'},
     {id: 6 , nombre : 'Ricardo' , apellido : 'Soto' , email : 'rsoto@gmail.com' , createAt : '1993-11-03', comuna : 'Colina 2'},
-    {id: 7 , nombre : 'Elias' , apellido : 'Sanchez' , email : 'esanchez@gmail.com' , createAt : '1993-04-15', comuna : 'Maipú'}
+    {id: 7 , nombre : 'Camilo' , apellido : 'calbuqoy' , email : 'ccalbuqoy@gmail.com' , createAt : '1993-11-03', comuna : 'Peñaflor'},
+    {id: 8 , nombre : 'Patricio' , apellido : 'Estrella' , email : 'pestrella@gmail.com' , createAt : '1990-08-29', comuna : 'Fondo de Bikini'},
+    {id: 9 , nombre : 'Gonzalo' , apellido : 'Fernandez' , email : 'gfernandez@gmail.com' , createAt : '1985-06-02', comuna : 'Buin'},
+    {id: 10 , nombre : 'Elias' , apellido : 'Sanchez' , email : 'esanchez@gmail.com' , createAt : '1993-04-15', comuna : 'Maipú'}
   ];
 
   //Objeto vacio para agregarlo al editar
