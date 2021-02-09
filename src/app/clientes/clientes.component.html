@@ -37,7 +37,8 @@
 
       <!--Div para editar-->
       <div *ngIf="divAdd == true">
-        <h4><fa-icon [icon]="faEdit"></fa-icon> Editar Usuario</h4>
+        <h4><fa-icon [icon]="faPlusSquare"></fa-icon> Agregar Usuario</h4>
+        <!--Con ngSubmit evito que la pagina haga un refresh cada vez que presiono un boton dentro del formulario-->
         <form (ngSubmit)="agregarUsuario()">
           <!--ngModel  se coloca con [] para que se asocie a un valor de la clase ts y () para que escuche el evento al cambiar el valor del input-->
           <!--Al ocupar ngMOdel necesita obligadamente la propiedad name del html-->
@@ -46,7 +47,7 @@
           <input type="email" placeholder="Ingrese su email" name="email" [(ngModel)]="email"><br>
           <input type="text" placeholder="Ingrese su fecha de nacimiento" name="createAt" [(ngModel)]="createAt"><br>
           <input type="text" placeholder="Ingrese su comuna" name="comuna" [(ngModel)]="comuna"><br><br>
-          <button class="btn btn-success"><fa-icon [icon]="faEdit"></fa-icon> Guardar</button>
+          <button class="btn btn-success"><fa-icon [icon]="faPlusSquare"></fa-icon> Guardar usuario</button>
         </form>
       </div>
 

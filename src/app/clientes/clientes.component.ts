@@ -10,6 +10,7 @@ import { faClipboardList } from '@fortawesome/free-solid-svg-icons';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-clientes',
@@ -27,6 +28,7 @@ export class ClientesComponent  {
   faEdit = faEdit;
   faTrashAlt = faTrashAlt;
   faUserPlus = faUserPlus;
+  faPlusSquare = faPlusSquare;
 
   //Arreglo para llenar con los datos la tabla
   public Clientes : Cliente [] = [
@@ -72,16 +74,29 @@ export class ClientesComponent  {
   }
 
   agregarUsuario() : void {
-
-    //Cada vez que entra acá crear un nuevo objeto para que no me los sobreescriba.
+    //Cada vez que entramos a este metodo debemos volver a crear un NUEVO objeto para que no me los sobreescriba en la tabla.
     let nuevoCliente = new Cliente();
     nuevoCliente.nombre = this.nombre;
     nuevoCliente.apellido = this.apellido;
     nuevoCliente.email = this.email;
     nuevoCliente.createAt = this.createAt;
     nuevoCliente.comuna = this.comuna;
-    //Agregar el objeto nuevo en el fondo del array
-    this.Clientes.push(nuevoCliente);
+
+    //Valudación cavernicola de campos vacios.
+    if(nuevoCliente.nombre.length == 0 ){
+      console.log("No se pudo agregar usuario , el campo nombre esta vacio");
+    }else if(nuevoCliente.apellido.length == 0){
+      console.log("No se pudo agregar usuario , el campo apellido esta vacio");
+    }else if(nuevoCliente.email.length == 0){
+      console.log("No se pudo agregar usuario , el campo email esta vacio");
+    }else if(nuevoCliente.createAt.length == 0){
+      console.log("No se pudo agregar usuario , el campo fecha de nacimiento esta vacio");
+    }else if(nuevoCliente.comuna.length == 0){
+      console.log("No se pudo agregar usuario , el campo comuna esta vacio");
+    }else{
+      //Si pasa todas las validaciones agregamos el objeto nuevo en el fondo del array.
+      this.Clientes.push(nuevoCliente);
+    }
 
     //Limpiar los input luego de utilizarlos
     this.nombre='';
