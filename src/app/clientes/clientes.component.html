@@ -35,6 +35,11 @@
         <p class="text-center">Usuario agregado exitosamente!!</p>
       </div>
 
+      <!--Zona de alertas para notificaciones en el formulario-->
+      <div *ngIf="divDeleteUser == true" class="alert alert-danger" role="alert">
+        <p class="text-center">Usuario eliminado exitosamente!!</p>
+      </div>
+
       <br>
       <button class="btn btn-success" (click)="agregarUsuarioBtn()"><fa-icon [icon]="faUserPlus"> </fa-icon> Agregar Usuario</button>
       <button class="btn btn-primary" (click)="ocultarTabla()"><fa-icon [icon]="faEyeSlash"> </fa-icon> {{ textoBoton }}</button>
@@ -74,8 +79,9 @@
             </div>
 
             <button class="btn btn-success form-control"><fa-icon [icon]="faPlusSquare"></fa-icon> Guardar usuario</button>
-
           </form>
+          <br>
+          <button class="btn btn-secondary form-control" (click)="cancelarGuardado()"><fa-icon [icon]="faWindowClose"></fa-icon> Cancelar</button>
         </div>
         <div class="col-md-6"></div>
       </div>

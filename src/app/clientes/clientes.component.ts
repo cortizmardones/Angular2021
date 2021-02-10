@@ -12,6 +12,7 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-clientes',
@@ -31,17 +32,18 @@ export class ClientesComponent  {
   faUserPlus = faUserPlus;
   faPlusSquare = faPlusSquare;
   faEyeSlash = faEyeSlash;
+  faWindowClose = faWindowClose;
 
   //Arreglo para llenar con los datos la tabla
   public Clientes : Cliente [] = [
-    {id: 1 , nombre : 'Esteban' , apellido : 'Bustos' , email : 'ebustos@gmail.com' , createAt : '1991-07-24' , comuna : 'San Bernardo'},
-    {id: 2 , nombre : 'Carlos' , apellido : 'Ortiz' , email : 'cortizmardones@gmail.com' , createAt : '1988-03-22', comuna : 'Puente Alto'},
-    {id: 3 , nombre : 'Marcelo' , apellido : 'Veloso' , email : 'mveloso@gmail.com' , createAt : '1993-12-09', comuna : 'Santiago'},
-    {id: 4 , nombre : 'Francisco' , apellido : 'Cancino' , email : 'fcancino@gmail.com' , createAt : '1985-04-03', comuna : 'Puente Alto'},
-    {id: 5 , nombre : 'Jose' , apellido : 'Bernales' , email : 'jbernales@gmail.com' , createAt : '2017-12-11', comuna : 'Coñaripe'},
-    {id: 6 , nombre : 'Ricardo' , apellido : 'Soto' , email : 'rsoto@gmail.com' , createAt : '1993-11-03', comuna : 'Colina 2'},
+    {id: 1 , nombre : 'Carlos' , apellido : 'Ortiz' , email : 'cortizmardones@gmail.com' , createAt : '1988-03-22' , comuna : 'Puente Alto'},
+    {id: 2 , nombre : 'Esteban' , apellido : 'Bustos' , email : 'ebustos@gmail.com' , createAt : '1988-03-22', comuna : 'Cerrillos'},
+    {id: 3 , nombre : 'Marcelo' , apellido : 'Salas' , email : 'fsalas@gmail.com' , createAt : '1993-12-09', comuna : 'Santiago'},
+    {id: 4 , nombre : 'Francisco' , apellido : 'Cancino' , email : 'fcancino@gmail.com' , createAt : '1985-04-03', comuna : 'La Florida'},
+    {id: 5 , nombre : 'Jose' , apellido : 'Bernales' , email : 'jbernales@gmail.com' , createAt : '2017-12-11', comuna : 'La Cisterna'},
+    {id: 6 , nombre : 'Ricardo' , apellido : 'Soto' , email : 'rsoto@gmail.com' , createAt : '1993-11-03', comuna : 'El Bosque'},
     {id: 7 , nombre : 'Camilo' , apellido : 'Calbuqoy' , email : 'ccalbuqoy@gmail.com' , createAt : '1993-11-03', comuna : 'Peñaflor'},
-    {id: 8 , nombre : 'Patricio' , apellido : 'Estrella' , email : 'pestrella@gmail.com' , createAt : '1990-08-29', comuna : 'Fondo de Bikini'},
+    {id: 8 , nombre : 'Claudio' , apellido : 'Sandoval' , email : 'csandoval@gmail.com' , createAt : '1990-08-29', comuna : 'Cerro Navia'},
     {id: 9 , nombre : 'Gonzalo' , apellido : 'Fernandez' , email : 'gfernandez@gmail.com' , createAt : '1985-06-02', comuna : 'Buin'},
     {id: 10 , nombre : 'Elias' , apellido : 'Sanchez' , email : 'esanchez@gmail.com' , createAt : '1993-04-15', comuna : 'Maipú'}
   ];
@@ -71,6 +73,7 @@ export class ClientesComponent  {
   //Propiedades para las alertas/validaciones del formulario.
   public divFormALert : boolean = false;
   public divFormSuccess : boolean = false;
+  public divDeleteUser : boolean = false;
 
   //Funciones para la interactividad
   ocultarTabla() : void {
@@ -84,6 +87,7 @@ export class ClientesComponent  {
     this.divAdd = true;
     this.divEdit = false;
     this.divFormSuccess = false;
+    this.divDeleteUser = false;
   }
 
   agregarUsuario() : void {
@@ -103,6 +107,9 @@ export class ClientesComponent  {
       console.log("No se pudo agregar usuario , el campo apellido esta vacio");
       this.divFormALert = true;
     }else if(nuevoCliente.email.length == 0){
+      console.log("No se pudo agregar usuario , el campo email esta vacio");
+      this.divFormALert = true;
+    }else if(this.serverMail.length == 0){
       console.log("No se pudo agregar usuario , el campo email esta vacio");
       this.divFormALert = true;
     }else if(nuevoCliente.createAt.length == 0){
@@ -127,7 +134,14 @@ export class ClientesComponent  {
       this.divAdd = false;
     }
 
+  }
 
+//Metodo para cancelar el guardado y ocultar el formulario y las alertas.
+  cancelarGuardado(){
+    this.divAdd = false;
+    this.divEdit = false;
+    this.divFormSuccess = false;
+    this.divFormALert = false;
   }
 
 
@@ -135,6 +149,13 @@ export class ClientesComponent  {
   eliminar( position: number) : void {
     console.log("Eliminar...");
     this.Clientes.splice( position , 1 );
+
+    this.divDeleteUser = true;
+
+    this.divAdd = false;
+    this.divEdit = false;
+    this.divFormSuccess = false;
+    this.divFormALert = false;
   }
 
 
