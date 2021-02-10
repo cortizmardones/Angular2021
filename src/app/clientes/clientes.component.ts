@@ -51,6 +51,7 @@ export class ClientesComponent  {
   public nombre : string = '';
   public apellido : string = '';
   public email : string = '';
+  public serverMail : string = '';
   public createAt : string = '';
   public comuna : string = '';
   public objetoCliente : Cliente = {id:0,nombre:'',apellido:'',email:'',createAt:'',comuna:''};
@@ -81,7 +82,7 @@ export class ClientesComponent  {
     let nuevoCliente = new Cliente();
     nuevoCliente.nombre = this.nombre;
     nuevoCliente.apellido = this.apellido;
-    nuevoCliente.email = this.email;
+    nuevoCliente.email = this.email+"@"+this.serverMail;
     nuevoCliente.createAt = this.createAt;
     nuevoCliente.comuna = this.comuna;
 
