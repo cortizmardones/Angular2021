@@ -13,6 +13,7 @@ import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
+import { faHandSparkles } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-clientes',
@@ -33,6 +34,7 @@ export class ClientesComponent  {
   faPlusSquare = faPlusSquare;
   faEyeSlash = faEyeSlash;
   faWindowClose = faWindowClose;
+  faHandSparkles = faHandSparkles;
 
   //Arreglo para llenar con los datos la tabla
   public Clientes : Cliente [] = [
@@ -42,10 +44,9 @@ export class ClientesComponent  {
     {id: 4 , nombre : 'Francisco' , apellido : 'Cancino' , email : 'fcancino@gmail.com' , createAt : '1985-04-03', comuna : 'La Florida'},
     {id: 5 , nombre : 'Jose' , apellido : 'Bernales' , email : 'jbernales@gmail.com' , createAt : '2017-12-11', comuna : 'La Cisterna'},
     {id: 6 , nombre : 'Ricardo' , apellido : 'Soto' , email : 'rsoto@gmail.com' , createAt : '1993-11-03', comuna : 'El Bosque'},
-    {id: 7 , nombre : 'Camilo' , apellido : 'Calbuqoy' , email : 'ccalbuqoy@gmail.com' , createAt : '1993-11-03', comuna : 'Peñaflor'},
-    {id: 8 , nombre : 'Claudio' , apellido : 'Sandoval' , email : 'csandoval@gmail.com' , createAt : '1990-08-29', comuna : 'Cerro Navia'},
-    {id: 9 , nombre : 'Gonzalo' , apellido : 'Fernandez' , email : 'gfernandez@gmail.com' , createAt : '1985-06-02', comuna : 'Buin'},
-    {id: 10 , nombre : 'Elias' , apellido : 'Sanchez' , email : 'esanchez@gmail.com' , createAt : '1993-04-15', comuna : 'Maipú'}
+    {id: 7 , nombre : 'Claudio' , apellido : 'Sandoval' , email : 'csandoval@gmail.com' , createAt : '1990-08-29', comuna : 'Cerro Navia'},
+    {id: 8 , nombre : 'Gonzalo' , apellido : 'Fernandez' , email : 'gfernandez@gmail.com' , createAt : '1985-06-02', comuna : 'Buin'},
+    {id: 9 , nombre : 'Elias' , apellido : 'Sanchez' , email : 'esanchez@gmail.com' , createAt : '1993-04-15', comuna : 'Maipú'}
   ];
 
   //Arreglo para llenar las comunas del select.
@@ -59,8 +60,8 @@ export class ClientesComponent  {
   public serverMail : string = '';
   public createAt : string = '';
   public comuna : string = '';
-  public objetoCliente : Cliente = {id:0,nombre:'',apellido:'',email:'',createAt:'',comuna:''};
-
+  //public objetoCliente : Cliente = {id:0,nombre:'',apellido:'',email:'',createAt:'',comuna:''};
+  public posicion : number = 0;
 
   //Campos para las interaciones de la tabla
   public tabla: boolean = true;
@@ -75,6 +76,8 @@ export class ClientesComponent  {
   public divFormSuccess : boolean = false;
   public divDeleteUser : boolean = false;
 
+  //METODOS PERSONALIZADOS.
+
   //Funciones para la interactividad
   ocultarTabla() : void {
     this.tabla = (this.tabla==true) ? false : true;
@@ -82,7 +85,7 @@ export class ClientesComponent  {
     this.tituloTabla = (this.tabla==true) ? "Listado de clientes" : "Tabla vacía";
   }
 
-  //Opciónes para agregar Usuarios nuevos
+  //metodos para agregar usuarios
   agregarUsuarioBtn() : void {
     this.divAdd = true;
     this.divEdit = false;
@@ -133,10 +136,9 @@ export class ClientesComponent  {
       //Ocultar el formulario
       this.divAdd = false;
     }
-
   }
 
-//Metodo para cancelar el guardado y ocultar el formulario y las alertas.
+  //Metodo para cancelar el guardado y ocultar el formulario y las alertas.
   cancelarGuardado(){
     this.divAdd = false;
     this.divEdit = false;
@@ -145,18 +147,6 @@ export class ClientesComponent  {
   }
 
 
-  //Opcion eliminar
-  eliminar( position: number) : void {
-    console.log("Eliminar...");
-    this.Clientes.splice( position , 1 );
-
-    this.divDeleteUser = true;
-
-    this.divAdd = false;
-    this.divEdit = false;
-    this.divFormSuccess = false;
-    this.divFormALert = false;
-  }
 
 
 
@@ -166,19 +156,8 @@ export class ClientesComponent  {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-  //Opcion de editar
-  editar( nombre: string , apellido : string , email : string , createAt : string , comuna : string) : void {
+  //Metodos para editar usuarios.
+  editar( nombre: string , apellido : string , email : string , createAt : string , comuna : string , position : number) : void {
     console.log("Editando a : " + nombre + " " + apellido);
     this.divEdit = true;
     this.divAdd = false;
@@ -187,18 +166,58 @@ export class ClientesComponent  {
     this.email = email;
     this.createAt = createAt;
     this.comuna = comuna;
+    this.posicion = position;
   }
-  guardarCambiosEditar(nombre: string , apellido : string , email : string , createAt : string , comuna : string) : void {
-    console.log("Guardando cambios");
 
-    this.objetoCliente.nombre = nombre;
-    this.objetoCliente.apellido = apellido;
-    this.objetoCliente.email = email;
-    this.objetoCliente.createAt = createAt;
-    this.objetoCliente.comuna = comuna;
-    this.Clientes.push(this.objetoCliente);
+  modificarUsuario() : void {
+    console.log("LLegamos al metodo modificarUsuario() con los valores");
+    let nuevoCliente = new Cliente();
+    nuevoCliente.nombre = this.nombre;
+    nuevoCliente.apellido = this.apellido;
+    nuevoCliente.email = this.email;
+    nuevoCliente.createAt = this.createAt;
+    nuevoCliente.comuna = this.comuna;
+    this.Clientes[this.posicion] = nuevoCliente;
+    //this.Clientes.push(nuevoCliente);
+
     //Despues de que se agrega el item hay que ocultar el formulario
     this.divEdit = false;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  //Metodos para eliminar usuarios.
+  eliminar( position: number) : void {
+    this.Clientes.splice( position , 1 );
+    this.divDeleteUser = true;
+    this.divAdd = false;
+    this.divEdit = false;
+    this.divFormSuccess = false;
+    this.divFormALert = false;
+  }
+
+  //Metodo para limpiar limpiarAlertas
+  limpiarAlertas() : void{
+    console.log("Limpiando alertas..");
+    this.divAdd = false;
+    this.divEdit = false;
+    this.divFormSuccess = false;
+    this.divFormALert = false;
+    this.divDeleteUser = false;
+    this.divFormSuccess = false;
   }
 
 
