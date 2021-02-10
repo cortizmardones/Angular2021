@@ -105,24 +105,24 @@ export class ClientesComponent  {
 
     //Valudación cavernicola de campos vacios.
     if(nuevoCliente.nombre.length == 0 ){
-      console.log("No se pudo agregar usuario , el campo nombre esta vacio");
+      //console.log("No se pudo agregar usuario , el campo nombre esta vacio");
       this.divFormALert = true;
-    }else if(nuevoCliente.apellido.length == 0){
-      console.log("No se pudo agregar usuario , el campo apellido esta vacio");
+    } else if (nuevoCliente.apellido.length == 0){
+      //console.log("No se pudo agregar usuario , el campo apellido esta vacio");
       this.divFormALert = true;
-    }else if(nuevoCliente.email.length == 0){
-      console.log("No se pudo agregar usuario , el campo email esta vacio");
+    } else if (nuevoCliente.email.length == 0){
+      //console.log("No se pudo agregar usuario , el campo email esta vacio");
       this.divFormALert = true;
-    }else if(this.serverMail.length == 0){
-      console.log("No se pudo agregar usuario , el campo email esta vacio");
+    } else if (this.serverMail.length == 0){
+      //console.log("No se pudo agregar usuario , el campo email esta vacio");
       this.divFormALert = true;
-    }else if(nuevoCliente.createAt.length == 0){
-      console.log("No se pudo agregar usuario , el campo fecha de nacimiento esta vacio");
+    } else if (nuevoCliente.createAt.length == 0){
+      //console.log("No se pudo agregar usuario , el campo fecha de nacimiento esta vacio");
       this.divFormALert = true;
-    }else if(nuevoCliente.comuna.length == 0){
-      console.log("No se pudo agregar usuario , el campo comuna esta vacio");
+    } else if (nuevoCliente.comuna.length == 0){
+      //console.log("No se pudo agregar usuario , el campo comuna esta vacio");
       this.divFormALert = true;
-    }else{
+    } else {
       //Si pasa todas las validaciones agregamos el objeto nuevo en el fondo del array.
       this.Clientes.push(nuevoCliente);
       this.divFormALert = false;
@@ -159,7 +159,6 @@ export class ClientesComponent  {
 
   //Metodos para editar usuarios.
   editar( nombre: string , apellido : string , email : string , createAt : string , comuna : string , position : number) : void {
-    console.log("Editando a : " + nombre + " " + apellido);
     this.divEdit = true;
     this.divAdd = false;
     this.nombre = nombre;
@@ -171,7 +170,6 @@ export class ClientesComponent  {
   }
 
   modificarUsuario() : void {
-    console.log("LLegamos al metodo modificarUsuario() con los valores");
     let nuevoCliente = new Cliente();
     nuevoCliente.nombre = this.nombre;
     nuevoCliente.apellido = this.apellido;
@@ -222,7 +220,6 @@ export class ClientesComponent  {
 
   //Metodo para limpiar limpiarAlertas
   limpiarAlertas() : void{
-    console.log("Limpiando alertas..");
     this.divAdd = false;
     this.divEdit = false;
     this.divFormSuccess = false;

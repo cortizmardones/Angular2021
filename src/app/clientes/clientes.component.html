@@ -50,7 +50,8 @@
       <br>
 
       <button class="btn btn-success" (click)="agregarUsuarioBtn()"><fa-icon [icon]="faUserPlus"> </fa-icon> Agregar Usuario</button>
-      <button class="btn btn-primary" (click)="ocultarTabla()"><fa-icon [icon]="faEyeSlash"> </fa-icon> {{ textoBoton }}</button>
+      <!--Este boton lo hice solo a mado de prueba para validar distintos textos y colores dependiendo de un evento-->
+      <!--<button class="btn btn-primary" (click)="ocultarTabla()"><fa-icon [icon]="faEyeSlash"> </fa-icon> {{ textoBoton }}</button>-->
       <button class="btn btn-secondary" (click)="limpiarAlertas()"><fa-icon [icon]="faHandSparkles"> </fa-icon> Limpiar Notificaciones</button>
 
       <br><br><br>
@@ -113,14 +114,10 @@
             </div>
             <label><fa-icon [icon]="faCalendarAlt"></fa-icon> Fecha de nacimiento</label>
             <input type="date" class="form-control" name="createAt" value="{{ createAt }}" [(ngModel)]="createAt" placeholder="Ingrese su fecha de nacimiento" autocomplete="off"><br>
-
             <label><fa-icon [icon]="faCity"></fa-icon> Comuna</label><br>
             <select name="comuna" class="form-control" [(ngModel)]="comuna">
               <option *ngFor="let item of comunas" value="{{ item }}"> {{ item }} </option>
             </select><br>
-
-            <!--<label><fa-icon [icon]="faCity"></fa-icon> Comuna</label>
-            <input type="text" class="form-control" name="comuna" value="{{ comuna }}" [(ngModel)]="comuna" placeholder="Ingrese su comuna" autocomplete="off"><br>-->
             <button class="btn btn-warning form-control"><fa-icon [icon]="faEdit"></fa-icon> Modificar</button>
           </form>
           <br>
