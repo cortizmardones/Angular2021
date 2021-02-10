@@ -32,7 +32,7 @@
       <hr>
       <!--Zona de alertas para notificaciones en el formulario-->
       <div *ngIf="divFormSuccess == true" class="alert alert-success" role="alert">
-        Usuario agregado exitosamente!!
+        <p class="text-center">Usuario agregado exitosamente!!</p>
       </div>
 
       <br>
@@ -65,11 +65,12 @@
             <label><fa-icon [icon]="faCalendarAlt"></fa-icon> Fecha de nacimiento</label><br>
             <input type="date" class="form-control" placeholder="Ingrese su fecha de nacimiento" name="createAt" [(ngModel)]="createAt"><br>
             <label><fa-icon [icon]="faCity"></fa-icon> Comuna</label><br>
-            <input type="text" class="form-control" placeholder="Ingrese su comuna" name="comuna" [(ngModel)]="comuna" autocomplete="off"><br>
-
+            <select name="comuna" class="form-control" [(ngModel)]="comuna">
+              <option *ngFor="let item of comunas" value="{{ item }}"> {{ item }} </option>
+            </select><br>
             <!--Zona de alertas para notificaciones en el formulario-->
             <div *ngIf="divFormALert == true" class="alert alert-danger" role="alert">
-              Debes ingresar todos los campos en el formulario!!
+              <p class="text-center">Debes ingresar todos los campos en el formulario!!</p>
             </div>
 
             <button class="btn btn-success form-control"><fa-icon [icon]="faPlusSquare"></fa-icon> Guardar usuario</button>
@@ -83,10 +84,22 @@
       <div *ngIf="divEdit == true" class="row">
           <div class="col-md-6">
           <h4><fa-icon [icon]="faEdit"></fa-icon> Editar Usuario</h4>
-          <input type="text" class="form-control" value="{{ nombre }}" placeholder="Ingrese su nombre" autocomplete="off" required>
-          <input type="text" class="form-control" value="{{ apellido }}" placeholder="Ingrese su apellido" autocomplete="off" required>
-          <input type="email" class="form-control" value="{{ email }}" placeholder="Ingrese su email" autocomplete="off" required>
-          <input type="text" class="form-control" value="{{ createAt }}" placeholder="Ingrese su fecha de nacimiento" autocomplete="off" required>
+          <br>
+          <label><fa-icon [icon]="faAddressBook"></fa-icon> Nombre</label>
+          <input type="text" class="form-control" value="{{ nombre }}" placeholder="Ingrese su nombre" autocomplete="off" required><br>
+          <label><fa-icon [icon]="faAddressBook"></fa-icon> Apellido</label>
+          <input type="text" class="form-control" value="{{ apellido }}" placeholder="Ingrese su apellido" autocomplete="off" required><br>
+          <label><fa-icon [icon]="faMailBulk"></fa-icon> Email</label>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Ingrese su email" name="email" [(ngModel)]="email" autocomplete="off">
+            <span class="input-group-text">@</span>
+            <input type="text" class="form-control" placeholder="Ingrese su servidor de correo" name="servidorCorreo" [(ngModel)]="serverMail" autocomplete="off">
+          </div>
+          <!-- <label><fa-icon [icon]="faMailBulk"></fa-icon> Email</label>
+          <input type="email" class="form-control" value="{{ email }}" placeholder="Ingrese su email" autocomplete="off" required><br>-->
+          <label><fa-icon [icon]="faCalendarAlt"></fa-icon> Fecha de nacimiento</label>
+          <input type="date" class="form-control" value="{{ createAt }}" placeholder="Ingrese su fecha de nacimiento" autocomplete="off" required><br>
+          <label><fa-icon [icon]="faCity"></fa-icon> Comuna</label>
           <input type="text" class="form-control" value="{{ comuna }}" placeholder="Ingrese su comuna" autocomplete="off" required><br>
           <button class="btn btn-warning form-control" (click)="guardarCambiosEditar(nombre,apellido,email,createAt,comuna)"><fa-icon [icon]="faEdit"></fa-icon> Modificar</button>
         </div>

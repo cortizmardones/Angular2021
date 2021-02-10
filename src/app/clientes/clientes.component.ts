@@ -46,6 +46,9 @@ export class ClientesComponent  {
     {id: 10 , nombre : 'Elias' , apellido : 'Sanchez' , email : 'esanchez@gmail.com' , createAt : '1993-04-15', comuna : 'Maipú'}
   ];
 
+  //Arreglo para llenar las comunas del select.
+  public comunas : string[] = ['Cerrillos', 'Cerro Navia', 'Conchalí', 'El Bosque', 'Estación Central', 'Huechuraba', 'Independencia', 'La Cisterna', 'La Florida', 'La Granja','La Pintana', 'La Reina', 'Las Condes', 'Lo Barnechea', 'Lo Espejo', 'Lo Prado', 'Macul', 'Maipú', 'Ñuñoa', 'Pedro Aguirre Cerda', 'Peñalolén', 'Providencia', 'Pudahuel', 'Quilicura', 'Quinta Normal', 'Recoleta', 'Renca', 'San Joaquín', 'San Miguel', 'San Ramón', 'Santiago' , 'Vitacura'];
+
   //Propiedades y objetos para agregar usuarios nuevos.
   public divAdd: boolean = false;
   public nombre : string = '';
@@ -55,6 +58,7 @@ export class ClientesComponent  {
   public createAt : string = '';
   public comuna : string = '';
   public objetoCliente : Cliente = {id:0,nombre:'',apellido:'',email:'',createAt:'',comuna:''};
+
 
   //Campos para las interaciones de la tabla
   public tabla: boolean = true;
