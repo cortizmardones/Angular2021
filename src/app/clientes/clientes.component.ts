@@ -64,6 +64,10 @@ export class ClientesComponent  {
   //Campo para las interacciones de la seccion editar
   public divEdit: boolean = false;
 
+  //Propiedades para las alertas/validaciones del formulario.
+  public divFormALert : boolean = false;
+  public divFormSuccess : boolean = false;
+
   //Funciones para la interactividad
   ocultarTabla() : void {
     this.tabla = (this.tabla==true) ? false : true;
@@ -75,6 +79,7 @@ export class ClientesComponent  {
   agregarUsuarioBtn() : void {
     this.divAdd = true;
     this.divEdit = false;
+    this.divFormSuccess = false;
   }
 
   agregarUsuario() : void {
@@ -89,27 +94,36 @@ export class ClientesComponent  {
     //Valudación cavernicola de campos vacios.
     if(nuevoCliente.nombre.length == 0 ){
       console.log("No se pudo agregar usuario , el campo nombre esta vacio");
+      this.divFormALert = true;
     }else if(nuevoCliente.apellido.length == 0){
       console.log("No se pudo agregar usuario , el campo apellido esta vacio");
+      this.divFormALert = true;
     }else if(nuevoCliente.email.length == 0){
       console.log("No se pudo agregar usuario , el campo email esta vacio");
+      this.divFormALert = true;
     }else if(nuevoCliente.createAt.length == 0){
       console.log("No se pudo agregar usuario , el campo fecha de nacimiento esta vacio");
+      this.divFormALert = true;
     }else if(nuevoCliente.comuna.length == 0){
       console.log("No se pudo agregar usuario , el campo comuna esta vacio");
+      this.divFormALert = true;
     }else{
       //Si pasa todas las validaciones agregamos el objeto nuevo en el fondo del array.
       this.Clientes.push(nuevoCliente);
+      this.divFormALert = false;
+      this.divFormSuccess = true;
+      //Limpiar los input luego de utilizarlos - solo despues de que se hayan agregado al arreglo , no antes ya que aun necesitamos los datos en los input del formulario
+      this.nombre='';
+      this.apellido='';
+      this.email='';
+      this.serverMail ='';
+      this.createAt='';
+      this.comuna='';
+      //Ocultar el formulario
+      this.divAdd = false;
     }
 
-    //Limpiar los input luego de utilizarlos
-    this.nombre='';
-    this.apellido='';
-    this.email='';
-    this.createAt='';
-    this.comuna='';
-    //Ocultar el formulario
-    this.divAdd = false;
+
   }
 
 
