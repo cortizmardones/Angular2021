@@ -41,6 +41,12 @@
         <p class="text-center">Usuario eliminado exitosamente!!</p>
       </div>
 
+
+      <!--Zona de alertas para notificaciones en el formulario-->
+      <div *ngIf="divUpdateUser == true" class="alert alert-warning" role="alert">
+        <p class="text-center">Usuario modificado exitosamente!!</p>
+      </div>
+
       <br>
 
       <button class="btn btn-success" (click)="agregarUsuarioBtn()"><fa-icon [icon]="faUserPlus"> </fa-icon> Agregar Usuario</button>
@@ -107,10 +113,18 @@
             </div>
             <label><fa-icon [icon]="faCalendarAlt"></fa-icon> Fecha de nacimiento</label>
             <input type="date" class="form-control" name="createAt" value="{{ createAt }}" [(ngModel)]="createAt" placeholder="Ingrese su fecha de nacimiento" autocomplete="off"><br>
-            <label><fa-icon [icon]="faCity"></fa-icon> Comuna</label>
-            <input type="text" class="form-control" name="comuna" value="{{ comuna }}" [(ngModel)]="comuna" placeholder="Ingrese su comuna" autocomplete="off"><br>
+
+            <label><fa-icon [icon]="faCity"></fa-icon> Comuna</label><br>
+            <select name="comuna" class="form-control" [(ngModel)]="comuna">
+              <option *ngFor="let item of comunas" value="{{ item }}"> {{ item }} </option>
+            </select><br>
+
+            <!--<label><fa-icon [icon]="faCity"></fa-icon> Comuna</label>
+            <input type="text" class="form-control" name="comuna" value="{{ comuna }}" [(ngModel)]="comuna" placeholder="Ingrese su comuna" autocomplete="off"><br>-->
             <button class="btn btn-warning form-control"><fa-icon [icon]="faEdit"></fa-icon> Modificar</button>
           </form>
+          <br>
+          <button class="btn btn-secondary form-control" (click)="cancelarActualizacion()"><fa-icon [icon]="faWindowClose"></fa-icon> Cancelar</button>
         </div>
         <div class="col-md-6"></div>
       </div>

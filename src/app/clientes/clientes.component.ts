@@ -45,12 +45,12 @@ export class ClientesComponent  {
     {id: 5 , nombre : 'Jose' , apellido : 'Bernales' , email : 'jbernales@gmail.com' , createAt : '2017-12-11', comuna : 'La Cisterna'},
     {id: 6 , nombre : 'Ricardo' , apellido : 'Soto' , email : 'rsoto@gmail.com' , createAt : '1993-11-03', comuna : 'El Bosque'},
     {id: 7 , nombre : 'Claudio' , apellido : 'Sandoval' , email : 'csandoval@gmail.com' , createAt : '1990-08-29', comuna : 'Cerro Navia'},
-    {id: 8 , nombre : 'Gonzalo' , apellido : 'Fernandez' , email : 'gfernandez@gmail.com' , createAt : '1985-06-02', comuna : 'Buin'},
+    {id: 8 , nombre : 'Gonzalo' , apellido : 'Fernandez' , email : 'gfernandez@gmail.com' , createAt : '1985-06-02', comuna : 'La Granja'},
     {id: 9 , nombre : 'Elias' , apellido : 'Sanchez' , email : 'esanchez@gmail.com' , createAt : '1993-04-15', comuna : 'Maipú'}
   ];
 
   //Arreglo para llenar las comunas del select.
-  public comunas : string[] = ['Cerrillos', 'Cerro Navia', 'Conchalí', 'El Bosque', 'Estación Central', 'Huechuraba', 'Independencia', 'La Cisterna', 'La Florida', 'La Granja','La Pintana', 'La Reina', 'Las Condes', 'Lo Barnechea', 'Lo Espejo', 'Lo Prado', 'Macul', 'Maipú', 'Ñuñoa', 'Pedro Aguirre Cerda', 'Peñalolén', 'Providencia', 'Pudahuel', 'Quilicura', 'Quinta Normal', 'Recoleta', 'Renca', 'San Joaquín', 'San Miguel', 'San Ramón', 'Santiago' , 'Vitacura'];
+  public comunas : string[] = ['Cerrillos', 'Cerro Navia', 'Conchalí', 'El Bosque', 'Estación Central', 'Huechuraba', 'Independencia', 'La Cisterna', 'La Florida', 'La Granja','La Pintana', 'La Reina', 'Las Condes', 'Lo Barnechea', 'Lo Espejo', 'Lo Prado', 'Macul', 'Maipú', 'Ñuñoa', 'Pedro Aguirre Cerda', 'Peñalolén', 'Providencia', 'Pudahuel', 'Puente Alto', 'Quilicura', 'Quinta Normal', 'Recoleta', 'Renca', 'San Joaquín', 'San Miguel', 'San Ramón', 'Santiago' , 'Vitacura'];
 
   //Propiedades y objetos para agregar usuarios nuevos.
   public divAdd: boolean = false;
@@ -75,6 +75,7 @@ export class ClientesComponent  {
   public divFormALert : boolean = false;
   public divFormSuccess : boolean = false;
   public divDeleteUser : boolean = false;
+  public divUpdateUser : boolean = false;
 
   //METODOS PERSONALIZADOS.
 
@@ -177,11 +178,21 @@ export class ClientesComponent  {
     nuevoCliente.email = this.email;
     nuevoCliente.createAt = this.createAt;
     nuevoCliente.comuna = this.comuna;
+    //Esta linea actualiza dentro del arreglo el nuevo objeto con los nuevos datos.
     this.Clientes[this.posicion] = nuevoCliente;
-    //this.Clientes.push(nuevoCliente);
-
     //Despues de que se agrega el item hay que ocultar el formulario
     this.divEdit = false;
+    //Muestro la confirmación de actualización.
+    this.divUpdateUser = true;
+  }
+
+
+  cancelarActualizacion(){
+    this.divAdd = false;
+    this.divEdit = false;
+    this.divFormSuccess = false;
+    this.divFormALert = false;
+    this.divUpdateUser = false;
   }
 
 
@@ -218,6 +229,7 @@ export class ClientesComponent  {
     this.divFormALert = false;
     this.divDeleteUser = false;
     this.divFormSuccess = false;
+    this.divUpdateUser = false;
   }
 
 
