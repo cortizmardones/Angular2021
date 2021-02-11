@@ -53,7 +53,7 @@ export class ClientesComponent  {
   public comunas : string[] = ['Cerrillos', 'Cerro Navia', 'Conchalí', 'El Bosque', 'Estación Central', 'Huechuraba', 'Independencia', 'La Cisterna', 'La Florida', 'La Granja','La Pintana', 'La Reina', 'Las Condes', 'Lo Barnechea', 'Lo Espejo', 'Lo Prado', 'Macul', 'Maipú', 'Ñuñoa', 'Pedro Aguirre Cerda', 'Peñalolén', 'Providencia', 'Pudahuel', 'Puente Alto', 'Quilicura', 'Quinta Normal', 'Recoleta', 'Renca', 'San Joaquín', 'San Miguel', 'San Ramón', 'Santiago' , 'Vitacura'];
 
   //Propiedades y objetos para agregar usuarios nuevos.
-  public divAdd: boolean = false;
+  public divFormularioAgregarUsuario: boolean = false;
   public nombre : string = '';
   public apellido : string = '';
   public email : string = '';
@@ -69,13 +69,13 @@ export class ClientesComponent  {
   public tituloTabla: string = "Listado de clientes";
 
   //Campo para las interacciones de la seccion editar
-  public divEdit: boolean = false;
+  public divFormularioEditarUsuario: boolean = false;
 
   //Propiedades para las alertas/validaciones del formulario.
-  public divFormALert : boolean = false;
-  public divFormSuccess : boolean = false;
-  public divDeleteUser : boolean = false;
-  public divUpdateUser : boolean = false;
+  public alertFaltanCamposFormulario : boolean = false;
+  public alertUsuarioAgregado : boolean = false;
+  public alertUsuarioEliminado : boolean = false;
+  public alertUsuarioModificado : boolean = false;
 
   //METODOS PERSONALIZADOS.
 
@@ -88,10 +88,10 @@ export class ClientesComponent  {
 
   //metodos para agregar usuarios
   agregarUsuarioBtn() : void {
-    this.divAdd = true;
-    this.divEdit = false;
-    this.divFormSuccess = false;
-    this.divDeleteUser = false;
+    this.divFormularioAgregarUsuario = true;
+    this.divFormularioEditarUsuario = false;
+    this.alertUsuarioAgregado = false;
+    this.alertUsuarioEliminado = false;
   }
 
   agregarUsuario() : void {
@@ -106,27 +106,27 @@ export class ClientesComponent  {
     //Valudación cavernicola de campos vacios.
     if(nuevoCliente.nombre.length == 0 ){
       //console.log("No se pudo agregar usuario , el campo nombre esta vacio");
-      this.divFormALert = true;
+      this.alertFaltanCamposFormulario = true;
     } else if (nuevoCliente.apellido.length == 0){
       //console.log("No se pudo agregar usuario , el campo apellido esta vacio");
-      this.divFormALert = true;
+      this.alertFaltanCamposFormulario = true;
     } else if (nuevoCliente.email.length == 0){
       //console.log("No se pudo agregar usuario , el campo email esta vacio");
-      this.divFormALert = true;
+      this.alertFaltanCamposFormulario = true;
     } else if (this.serverMail.length == 0){
       //console.log("No se pudo agregar usuario , el campo email esta vacio");
-      this.divFormALert = true;
+      this.alertFaltanCamposFormulario = true;
     } else if (nuevoCliente.createAt.length == 0){
       //console.log("No se pudo agregar usuario , el campo fecha de nacimiento esta vacio");
-      this.divFormALert = true;
+      this.alertFaltanCamposFormulario = true;
     } else if (nuevoCliente.comuna.length == 0){
       //console.log("No se pudo agregar usuario , el campo comuna esta vacio");
-      this.divFormALert = true;
+      this.alertFaltanCamposFormulario = true;
     } else {
       //Si pasa todas las validaciones agregamos el objeto nuevo en el fondo del array.
       this.Clientes.push(nuevoCliente);
-      this.divFormALert = false;
-      this.divFormSuccess = true;
+      this.alertFaltanCamposFormulario = false;
+      this.alertUsuarioAgregado = true;
       //Limpiar los input luego de utilizarlos - solo despues de que se hayan agregado al arreglo , no antes ya que aun necesitamos los datos en los input del formulario
       this.nombre='';
       this.apellido='';
@@ -135,16 +135,16 @@ export class ClientesComponent  {
       this.createAt='';
       this.comuna='';
       //Ocultar el formulario
-      this.divAdd = false;
+      this.divFormularioAgregarUsuario = false;
     }
   }
 
   //Metodo para cancelar el guardado y ocultar el formulario y las alertas.
   cancelarGuardado(){
-    this.divAdd = false;
-    this.divEdit = false;
-    this.divFormSuccess = false;
-    this.divFormALert = false;
+    this.divFormularioAgregarUsuario = false;
+    this.divFormularioEditarUsuario = false;
+    this.alertUsuarioAgregado = false;
+    this.alertFaltanCamposFormulario = false;
   }
 
 
@@ -159,8 +159,13 @@ export class ClientesComponent  {
 
   //Metodos para editar usuarios.
   editar( nombre: string , apellido : string , email : string , createAt : string , comuna : string , position : number) : void {
-    this.divEdit = true;
-    this.divAdd = false;
+    this.divFormularioEditarUsuario = true;
+    this.divFormularioAgregarUsuario = false;
+
+    this.alertUsuarioAgregado = false;
+    this.alertUsuarioEliminado = false;
+    this.alertUsuarioModificado = false;
+
     this.nombre = nombre;
     this.apellido = apellido;
     this.email = email;
@@ -179,18 +184,18 @@ export class ClientesComponent  {
     //Esta linea actualiza dentro del arreglo el nuevo objeto con los nuevos datos.
     this.Clientes[this.posicion] = nuevoCliente;
     //Despues de que se agrega el item hay que ocultar el formulario
-    this.divEdit = false;
+    this.divFormularioEditarUsuario = false;
     //Muestro la confirmación de actualización.
-    this.divUpdateUser = true;
+    this.alertUsuarioModificado = true;
   }
 
 
   cancelarActualizacion(){
-    this.divAdd = false;
-    this.divEdit = false;
-    this.divFormSuccess = false;
-    this.divFormALert = false;
-    this.divUpdateUser = false;
+    this.divFormularioAgregarUsuario = false;
+    this.divFormularioEditarUsuario = false;
+    this.alertUsuarioAgregado = false;
+    this.alertFaltanCamposFormulario = false;
+    this.alertUsuarioModificado = false;
   }
 
 
@@ -211,22 +216,24 @@ export class ClientesComponent  {
   //Metodos para eliminar usuarios.
   eliminar( position: number) : void {
     this.Clientes.splice( position , 1 );
-    this.divDeleteUser = true;
-    this.divAdd = false;
-    this.divEdit = false;
-    this.divFormSuccess = false;
-    this.divFormALert = false;
+    this.alertUsuarioEliminado = true;
+    this.divFormularioAgregarUsuario = false;
+    this.divFormularioEditarUsuario = false;
+    this.alertUsuarioAgregado = false;
+    this.alertFaltanCamposFormulario = false;
+    this.alertUsuarioModificado = false;
+
   }
 
   //Metodo para limpiar limpiarAlertas
   limpiarAlertas() : void{
-    this.divAdd = false;
-    this.divEdit = false;
-    this.divFormSuccess = false;
-    this.divFormALert = false;
-    this.divDeleteUser = false;
-    this.divFormSuccess = false;
-    this.divUpdateUser = false;
+    this.divFormularioAgregarUsuario = false;
+    this.divFormularioEditarUsuario = false;
+    this.alertUsuarioAgregado = false;
+    this.alertFaltanCamposFormulario = false;
+    this.alertUsuarioEliminado = false;
+    this.alertUsuarioAgregado = false;
+    this.alertUsuarioModificado = false;
   }
 
 

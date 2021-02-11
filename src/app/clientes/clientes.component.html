@@ -32,18 +32,17 @@
       <hr>
 
       <!--Zona de alertas para notificaciones en el formulario-->
-      <div *ngIf="divFormSuccess == true" class="alert alert-success" role="alert">
+      <div *ngIf="alertUsuarioAgregado == true" class="alert alert-success" role="alert">
         <p class="text-center">Usuario agregado exitosamente!!</p>
       </div>
 
       <!--Zona de alertas para notificaciones en el formulario-->
-      <div *ngIf="divDeleteUser == true" class="alert alert-danger" role="alert">
+      <div *ngIf="alertUsuarioEliminado == true" class="alert alert-danger" role="alert">
         <p class="text-center">Usuario eliminado exitosamente!!</p>
       </div>
 
-
       <!--Zona de alertas para notificaciones en el formulario-->
-      <div *ngIf="divUpdateUser == true" class="alert alert-warning" role="alert">
+      <div *ngIf="alertUsuarioModificado == true" class="alert alert-warning" role="alert">
         <p class="text-center">Usuario modificado exitosamente!!</p>
       </div>
 
@@ -60,7 +59,7 @@
 
 
       <!--Div para agregar usuarios-->
-      <div *ngIf="divAdd == true" class="row">
+      <div *ngIf="divFormularioAgregarUsuario == true" class="row">
         <div class="col-md-6">
           <h4><fa-icon [icon]="faPlusSquare"></fa-icon> Agregar Usuario</h4>
           <br>
@@ -85,7 +84,7 @@
               <option *ngFor="let item of comunas" value="{{ item }}"> {{ item }} </option>
             </select><br>
             <!--Zona de alertas para notificaciones en el formulario-->
-            <div *ngIf="divFormALert == true" class="alert alert-danger" role="alert">
+            <div *ngIf="alertFaltanCamposFormulario == true" class="alert alert-danger" role="alert">
               <p class="text-center">Debes ingresar todos los campos en el formulario!!</p>
             </div>
             <button class="btn btn-success form-control"><fa-icon [icon]="faPlusSquare"></fa-icon> Guardar usuario</button>
@@ -97,7 +96,7 @@
       </div>
 
       <!--Div para editar-->
-      <div *ngIf="divEdit == true" class="row">
+      <div *ngIf="divFormularioEditarUsuario == true" class="row">
           <div class="col-md-6">
           <h4><fa-icon [icon]="faEdit"></fa-icon> Editar Usuario</h4>
           <br>
