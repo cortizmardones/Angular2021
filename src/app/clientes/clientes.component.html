@@ -109,7 +109,7 @@
             <div class="input-group mb-3">
               <input type="text" class="form-control"  name="email" value="{{email}}" [(ngModel)]="email" placeholder="Ingrese su email" autocomplete="off">
               <span class="input-group-text">@</span>
-              <input type="text" class="form-control" placeholder="Ingrese su servidor de correo" name="servidorCorreo" [(ngModel)]="serverMail" autocomplete="off">
+              <input type="text" class="form-control" name="serverMail" value="{{serverMail}}" [(ngModel)]="serverMail" placeholder="Ingrese su servidor de correo" autocomplete="off">
             </div>
             <label><fa-icon [icon]="faCalendarAlt"></fa-icon> Fecha de nacimiento</label>
             <input type="date" class="form-control" name="createAt" value="{{ createAt }}" [(ngModel)]="createAt" placeholder="Ingrese su fecha de nacimiento" autocomplete="off"><br>

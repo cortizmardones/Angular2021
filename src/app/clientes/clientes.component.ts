@@ -52,15 +52,21 @@ export class ClientesComponent  {
   //Arreglo para llenar las comunas del select.
   public comunas : string[] = ['Cerrillos', 'Cerro Navia', 'Conchalí', 'El Bosque', 'Estación Central', 'Huechuraba', 'Independencia', 'La Cisterna', 'La Florida', 'La Granja','La Pintana', 'La Reina', 'Las Condes', 'Lo Barnechea', 'Lo Espejo', 'Lo Prado', 'Macul', 'Maipú', 'Ñuñoa', 'Pedro Aguirre Cerda', 'Peñalolén', 'Providencia', 'Pudahuel', 'Puente Alto', 'Quilicura', 'Quinta Normal', 'Recoleta', 'Renca', 'San Joaquín', 'San Miguel', 'San Ramón', 'Santiago' , 'Vitacura'];
 
-  //Propiedades y objetos para agregar usuarios nuevos.
+  //Alertas y formularios.
   public divFormularioAgregarUsuario: boolean = false;
+  public divFormularioEditarUsuario: boolean = false;
+  public alertFaltanCamposFormulario : boolean = false;
+  public alertUsuarioAgregado : boolean = false;
+  public alertUsuarioEliminado : boolean = false;
+  public alertUsuarioModificado : boolean = false;
+
+
   public nombre : string = '';
   public apellido : string = '';
   public email : string = '';
   public serverMail : string = '';
   public createAt : string = '';
   public comuna : string = '';
-  //public objetoCliente : Cliente = {id:0,nombre:'',apellido:'',email:'',createAt:'',comuna:''};
   public posicion : number = 0;
 
   //Campos para las interaciones de la tabla
@@ -68,14 +74,10 @@ export class ClientesComponent  {
   public textoBoton: string ="Ocultar Tabla";
   public tituloTabla: string = "Listado de clientes";
 
-  //Campo para las interacciones de la seccion editar
-  public divFormularioEditarUsuario: boolean = false;
 
-  //Propiedades para las alertas/validaciones del formulario.
-  public alertFaltanCamposFormulario : boolean = false;
-  public alertUsuarioAgregado : boolean = false;
-  public alertUsuarioEliminado : boolean = false;
-  public alertUsuarioModificado : boolean = false;
+
+
+
 
   //METODOS PERSONALIZADOS.
 
@@ -161,14 +163,15 @@ export class ClientesComponent  {
   editar( nombre: string , apellido : string , email : string , createAt : string , comuna : string , position : number) : void {
     this.divFormularioEditarUsuario = true;
     this.divFormularioAgregarUsuario = false;
-
     this.alertUsuarioAgregado = false;
     this.alertUsuarioEliminado = false;
     this.alertUsuarioModificado = false;
-
     this.nombre = nombre;
     this.apellido = apellido;
-    this.email = email;
+    //La funcion indexof me permite obtener la posicion dodne est ubicado el @
+    //La funcion slice me permite extraer una cadena a parir de otra, recibe 2 parametros (inicio , termino)
+    this.email = email.slice(0,email.indexOf("@"));
+    this.serverMail = email.slice((email.indexOf("@")+1),email.length);
     this.createAt = createAt;
     this.comuna = comuna;
     this.posicion = position;
@@ -178,7 +181,7 @@ export class ClientesComponent  {
     let nuevoCliente = new Cliente();
     nuevoCliente.nombre = this.nombre;
     nuevoCliente.apellido = this.apellido;
-    nuevoCliente.email = this.email;
+    nuevoCliente.email = this.email +'@'+ this.serverMail;
     nuevoCliente.createAt = this.createAt;
     nuevoCliente.comuna = this.comuna;
     //Esta linea actualiza dentro del arreglo el nuevo objeto con los nuevos datos.
@@ -216,12 +219,13 @@ export class ClientesComponent  {
   //Metodos para eliminar usuarios.
   eliminar( position: number) : void {
     this.Clientes.splice( position , 1 );
-    this.alertUsuarioEliminado = true;
     this.divFormularioAgregarUsuario = false;
     this.divFormularioEditarUsuario = false;
+
+    this.alertUsuarioEliminado = true;
     this.alertUsuarioAgregado = false;
-    this.alertFaltanCamposFormulario = false;
     this.alertUsuarioModificado = false;
+    this.alertFaltanCamposFormulario = false;
 
   }
 
@@ -229,7 +233,7 @@ export class ClientesComponent  {
   limpiarAlertas() : void{
     this.divFormularioAgregarUsuario = false;
     this.divFormularioEditarUsuario = false;
-    this.alertUsuarioAgregado = false;
+
     this.alertFaltanCamposFormulario = false;
     this.alertUsuarioEliminado = false;
     this.alertUsuarioAgregado = false;
