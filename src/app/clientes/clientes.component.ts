@@ -94,6 +94,14 @@ export class ClientesComponent  {
     this.divFormularioEditarUsuario = false;
     this.alertUsuarioAgregado = false;
     this.alertUsuarioEliminado = false;
+
+    //VOLVER TODAS LAS VARIABLES VACIAS POR SI TENIA ALGUNA CON LA INFORMACION DEL EDITAR (EVITA QUE SE QUEDE LA INFO EN LOS INPUT DEL FORMULARIO)
+     this.nombre = '';
+     this.apellido = '';
+     this.email = '';
+     this.serverMail = '';
+     this.createAt = '';
+     this.comuna = '';
   }
 
   agregarUsuario() : void {
@@ -146,6 +154,8 @@ export class ClientesComponent  {
     this.divFormularioAgregarUsuario = false;
     this.divFormularioEditarUsuario = false;
     this.alertUsuarioAgregado = false;
+    this.alertUsuarioEliminado = false;
+    this.alertUsuarioModificado = false;
     this.alertFaltanCamposFormulario = false;
   }
 
