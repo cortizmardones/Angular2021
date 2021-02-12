@@ -17,7 +17,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let cliente of Clientes ; let indice = index">
-            <td>{{ indice }}</td>
+            <td>{{ indice + 1 }}</td>
             <td>{{ cliente.nombre }}</td>
             <td>{{ cliente.apellido }}</td>
             <td>{{ cliente.email }}</td>
