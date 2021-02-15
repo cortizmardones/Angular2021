@@ -14,6 +14,7 @@ import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { faHandSparkles } from '@fortawesome/free-solid-svg-icons';
+import { dataService } from '../services/data.service';
 
 @Component({
   selector: 'app-clientes',
@@ -21,6 +22,10 @@ import { faHandSparkles } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./clientes.component.css']
 })
 export class ClientesComponent  {
+
+  //Probando la inyección de dependencia.
+  constructor(public nombreServicio: dataService){
+  }
 
   //Juego de iconos fontawesome para llenar la tabla del componente
   faClipboardList = faClipboardList;

@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ClientesComponent } from './clientes/clientes.component';
+import { dataService } from './services/data.service';
 
 
 
@@ -22,7 +23,9 @@ import { ClientesComponent } from './clientes/clientes.component';
     DbzModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    dataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
