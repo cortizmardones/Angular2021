@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Cliente } from "../clientes/cliente";
 
-
 @Injectable()
 export class dataService {
 
@@ -23,17 +22,25 @@ export class dataService {
 
   public comunas : string[] = ['Cerrillos', 'Cerro Navia', 'Conchalí', 'El Bosque', 'Estación Central', 'Huechuraba', 'Independencia', 'La Cisterna', 'La Florida', 'La Granja','La Pintana', 'La Reina', 'Las Condes', 'Lo Barnechea', 'Lo Espejo', 'Lo Prado', 'Macul', 'Maipú', 'Ñuñoa', 'Pedro Aguirre Cerda', 'Peñalolén', 'Providencia', 'Pudahuel', 'Puente Alto', 'Quilicura', 'Quinta Normal', 'Recoleta', 'Renca', 'San Bernardo', 'San Joaquín', 'San Miguel', 'San Ramón', 'Santiago' , 'Vitacura'];
 
+  //Propiedades para rellenar objetos nuevos o editables.
+  public nombre : string = '';
+  public apellido : string = '';
+  public email : string = '';
+  public serverMail : string = '';
+  public createAt : string = '';
+  public comuna : string = '';
+  public posicion : number = 0;
+
   agregarUsuario(cliente : Cliente){
-    console.log("Agregando usuario del servicio...");
     this.listaClientes.push(cliente);
   }
 
-  editarUsuario(){
-    console.log("Editando usuario del servicio...");
+  editarUsuario(position : number , cliente : Cliente){
+    this.listaClientes[position] = cliente;
   }
 
-  eliminarUsuario(){
-      console.log("Eliminando usuario del servicio ....");
+  eliminarUsuario(position : number){
+      this.listaClientes.splice(position,1);
   }
 
 }

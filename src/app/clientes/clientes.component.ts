@@ -44,6 +44,13 @@ export class ClientesComponent  {
   //Así me evito tener que tener los arreglos y las listas en el componente.
   public Clientes : Cliente[] = this.nombreServicio.listaClientes;
   public comunas : string[] =  this.nombreServicio.comunas;
+  public nombre : string = this.nombreServicio.nombre;
+  public apellido : string = this.nombreServicio.apellido;
+  public email : string = this.nombreServicio.email;
+  public serverMail : string = this.nombreServicio.serverMail;
+  public createAt : string = this.nombreServicio.createAt;
+  public comuna : string = this.nombreServicio.comuna;
+  public posicion : number = this.nombreServicio.posicion;
 
   //Alertas y formularios.
   public divFormularioAgregarUsuario: boolean = false;
@@ -52,28 +59,13 @@ export class ClientesComponent  {
   public alertUsuarioAgregado : boolean = false;
   public alertUsuarioEliminado : boolean = false;
   public alertUsuarioModificado : boolean = false;
-
-
-  public nombre : string = '';
-  public apellido : string = '';
-  public email : string = '';
-  public serverMail : string = '';
-  public createAt : string = '';
-  public comuna : string = '';
-  public posicion : number = 0;
-
-  //Campos para las interaciones de la tabla
   public tabla: boolean = true;
   public textoBoton: string ="Ocultar Tabla";
   public tituloTabla: string = "Listado de clientes";
 
 
 
-
-
-
-  //METODOS PERSONALIZADOS.
-
+  // ############## INICIO METODOS DE LIMPIEZA Y CANCELACIÓN #####################
   //Funciones para la interactividad
   ocultarTabla() : void {
     this.tabla = (this.tabla==true) ? false : true;
@@ -81,13 +73,33 @@ export class ClientesComponent  {
     this.tituloTabla = (this.tabla==true) ? "Listado de clientes" : "Tabla vacía";
   }
 
-  //metodos para agregar usuarios
+  //Metodo para limpiar limpiarAlertas
+  limpiarAlertas() : void{
+    this.divFormularioAgregarUsuario = false;
+    this.divFormularioEditarUsuario = false;
+    this.alertFaltanCamposFormulario = false;
+    this.alertUsuarioEliminado = false;
+    this.alertUsuarioAgregado = false;
+    this.alertUsuarioModificado = false;
+  }
+    // ############## FIN METODOS DE LIMPIEZA Y CANCELACIÓN #####################
+
+
+
+
+
+
+
+
+
+
+  // ############## INICIO METODOS PARA AGREGAR #####################
+
   agregarUsuarioBtn() : void {
     this.divFormularioAgregarUsuario = true;
     this.divFormularioEditarUsuario = false;
     this.alertUsuarioAgregado = false;
     this.alertUsuarioEliminado = false;
-
     //VOLVER TODAS LAS VARIABLES VACIAS POR SI TENIA ALGUNA CON LA INFORMACION DEL EDITAR (EVITA QUE SE QUEDE LA INFO EN LOS INPUT DEL FORMULARIO)
      this.nombre = '';
      this.apellido = '';
@@ -154,23 +166,21 @@ export class ClientesComponent  {
     this.alertFaltanCamposFormulario = false;
   }
 
+  // ############## FIN METODOS DE LIMPIEZA Y CANCELACIÓN #####################
 
 
 
 
 
+// ############## INICIO METODOS DE EDICIÓN #####################
 
-
-
-
-
-  //Metodos para editar usuarios.
   editar( nombre: string , apellido : string , email : string , createAt : string , comuna : string , position : number) : void {
     this.divFormularioEditarUsuario = true;
     this.divFormularioAgregarUsuario = false;
     this.alertUsuarioAgregado = false;
     this.alertUsuarioEliminado = false;
     this.alertUsuarioModificado = false;
+
     this.nombre = nombre;
     this.apellido = apellido;
     //La funcion indexof me permite obtener la posicion dodne est ubicado el @
@@ -190,7 +200,7 @@ export class ClientesComponent  {
     nuevoCliente.createAt = this.createAt;
     nuevoCliente.comuna = this.comuna;
     //Esta linea actualiza dentro del arreglo el nuevo objeto con los nuevos datos.
-    this.Clientes[this.posicion] = nuevoCliente;
+    this.nombreServicio.editarUsuario(this.posicion, nuevoCliente);
     //Despues de que se agrega el item hay que ocultar el formulario
     this.divFormularioEditarUsuario = false;
     //Muestro la confirmación de actualización.
@@ -206,6 +216,7 @@ export class ClientesComponent  {
     this.alertUsuarioModificado = false;
   }
 
+// ############## FIN METODOS DE EDICIÓN #####################
 
 
 
@@ -220,30 +231,22 @@ export class ClientesComponent  {
 
 
 
+// ############## INICIO METODOS DE ELIMINACIÓN #####################
 
-  //Metodos para eliminar usuarios.
   eliminar( position: number) : void {
-    this.Clientes.splice( position , 1 );
+    this.nombreServicio.eliminarUsuario(position);
+
     this.divFormularioAgregarUsuario = false;
     this.divFormularioEditarUsuario = false;
-
     this.alertUsuarioEliminado = true;
     this.alertUsuarioAgregado = false;
     this.alertUsuarioModificado = false;
     this.alertFaltanCamposFormulario = false;
-
   }
 
-  //Metodo para limpiar limpiarAlertas
-  limpiarAlertas() : void{
-    this.divFormularioAgregarUsuario = false;
-    this.divFormularioEditarUsuario = false;
+// ############## FIN METODOS DE ELIMINACIÓN #####################
 
-    this.alertFaltanCamposFormulario = false;
-    this.alertUsuarioEliminado = false;
-    this.alertUsuarioAgregado = false;
-    this.alertUsuarioModificado = false;
-  }
+
 
 
 
