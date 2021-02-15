@@ -41,8 +41,10 @@ export class ClientesComponent  {
   faWindowClose = faWindowClose;
   faHandSparkles = faHandSparkles;
 
+  public Clientes : Cliente [] = this.nombreServicio.listaClientes;
+
   //Arreglo para llenar con los datos la tabla
-  public Clientes : Cliente [] = [
+  /*public Clientes : Cliente [] = [
     {id: 1 , nombre : 'Carlos' , apellido : 'Ortiz' , email : 'cortizmardones@gmail.com' , createAt : '1988-03-22' , comuna : 'Puente Alto'},
     {id: 2 , nombre : 'Esteban' , apellido : 'Bustos' , email : 'ebustos@gmail.com' , createAt : '1988-03-22', comuna : 'Cerrillos'},
     {id: 3 , nombre : 'Marcelo' , apellido : 'Salas' , email : 'fsalas@gmail.com' , createAt : '1993-12-09', comuna : 'Santiago'},
@@ -52,7 +54,7 @@ export class ClientesComponent  {
     {id: 7 , nombre : 'Claudio' , apellido : 'Sandoval' , email : 'csandoval@gmail.com' , createAt : '1990-08-29', comuna : 'Cerro Navia'},
     {id: 8 , nombre : 'Gonzalo' , apellido : 'Fernandez' , email : 'gfernandez@gmail.com' , createAt : '1985-06-02', comuna : 'La Granja'},
     {id: 9 , nombre : 'Elias' , apellido : 'Sanchez' , email : 'esanchez@gmail.com' , createAt : '1993-04-15', comuna : 'Maipú'}
-  ];
+  ];*/
 
   //Arreglo para llenar las comunas del select.
   public comunas : string[] = ['Cerrillos', 'Cerro Navia', 'Conchalí', 'El Bosque', 'Estación Central', 'Huechuraba', 'Independencia', 'La Cisterna', 'La Florida', 'La Granja','La Pintana', 'La Reina', 'Las Condes', 'Lo Barnechea', 'Lo Espejo', 'Lo Prado', 'Macul', 'Maipú', 'Ñuñoa', 'Pedro Aguirre Cerda', 'Peñalolén', 'Providencia', 'Pudahuel', 'Puente Alto', 'Quilicura', 'Quinta Normal', 'Recoleta', 'Renca', 'San Bernardo', 'San Joaquín', 'San Miguel', 'San Ramón', 'Santiago' , 'Vitacura'];
@@ -139,7 +141,9 @@ export class ClientesComponent  {
       this.alertFaltanCamposFormulario = true;
     } else {
       //Si pasa todas las validaciones agregamos el objeto nuevo en el fondo del array.
-      this.Clientes.push(nuevoCliente);
+      //this.Clientes.push(nuevoCliente);
+      this.nombreServicio.agregarUsuario(nuevoCliente);
+
       this.alertFaltanCamposFormulario = false;
       this.alertUsuarioAgregado = true;
       //Limpiar los input luego de utilizarlos - solo despues de que se hayan agregado al arreglo , no antes ya que aun necesitamos los datos en los input del formulario
