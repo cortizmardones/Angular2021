@@ -114,22 +114,22 @@ export class ClientesComponent  {
     nuevoCliente.comuna = this.comuna;
 
     //Valudación cavernicola de campos vacios.
-    if(nuevoCliente.nombre.length == 0 ){
+    if(nuevoCliente.nombre.trim().length == 0 ){
       //console.log("No se pudo agregar usuario , el campo nombre esta vacio");
       this.alertFaltanCamposFormulario = true;
-    } else if (nuevoCliente.apellido.length == 0){
+    } else if (nuevoCliente.apellido.trim().length == 0){
       //console.log("No se pudo agregar usuario , el campo apellido esta vacio");
       this.alertFaltanCamposFormulario = true;
-    } else if (nuevoCliente.email.length == 0){
+    } else if (nuevoCliente.email.trim().length == 0){
       //console.log("No se pudo agregar usuario , el campo email esta vacio");
       this.alertFaltanCamposFormulario = true;
-    } else if (this.serverMail.length == 0){
+    } else if (this.serverMail.trim().length == 0){
       //console.log("No se pudo agregar usuario , el campo email esta vacio");
       this.alertFaltanCamposFormulario = true;
-    } else if (nuevoCliente.createAt.length == 0){
+    } else if (nuevoCliente.createAt.trim().length == 0){
       //console.log("No se pudo agregar usuario , el campo fecha de nacimiento esta vacio");
       this.alertFaltanCamposFormulario = true;
-    } else if (nuevoCliente.comuna.length == 0){
+    } else if (nuevoCliente.comuna.trim().length == 0){
       //console.log("No se pudo agregar usuario , el campo comuna esta vacio");
       this.alertFaltanCamposFormulario = true;
     } else {
