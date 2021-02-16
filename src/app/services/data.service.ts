@@ -8,6 +8,8 @@ export class dataService {
     console.log("Inicializando servicio .... ");
   };
 
+  private apiKey :string = 'S1j29NbVWrICZXT0SSU56b1qrpRhGdkY';
+
   public listaClientes : Cliente [] = [
     {id: 1 , nombre : 'Carlos' , apellido : 'Ortiz' , email : 'cortizmardones@gmail.com' , createAt : '1988-03-22' , comuna : 'Puente Alto'},
     {id: 2 , nombre : 'Esteban' , apellido : 'Bustos' , email : 'ebustos@gmail.com' , createAt : '1988-03-22', comuna : 'Cerrillos'},
