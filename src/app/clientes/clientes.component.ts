@@ -248,6 +248,12 @@ export class ClientesComponent  {
 
 
 
+//Prueba servicio HttpClient
+requestHttp(){
+  this.nombreServicio.requestHttpSpringBoot();
+}
+
+
 
 
 }

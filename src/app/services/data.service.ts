@@ -1,10 +1,11 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Cliente } from "../clientes/cliente";
 
 @Injectable()
 export class dataService {
 
-  constructor(){
+  constructor(public http:HttpClient){
     console.log("Inicializando servicio .... ");
   };
 
@@ -41,6 +42,20 @@ export class dataService {
 
   eliminarUsuario(position : number){
       this.listaClientes.splice(position,1);
+  }
+
+  requestHttp(){
+    this.http.get('https://api.giphy.com/v1/gifs/search?api_key=S1j29NbVWrICZXT0SSU56b1qrpRhGdkY&q=angular&limit=25')
+    .subscribe( (respuesta:any) =>{
+      console.log(respuesta.data[0]);
+    });
+  }
+
+  requestHttpSpringBoot(){
+    this.http.get('http://localhost:8080/api/listarClientes')
+    .subscribe( (respuesta:any) =>{
+      console.log(respuesta);
+    });
   }
 
 }
