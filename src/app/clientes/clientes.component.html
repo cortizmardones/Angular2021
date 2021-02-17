@@ -131,3 +131,30 @@
 
 
       <br><br><br>
+
+      <!--Tabla para mostrar los registros de SpringBoot-->
+      <table class="table table-striped table-bordered text-center" *ngIf="tablaSpringBoot == true">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col"><fa-icon [icon]="faAddressBook"></fa-icon> Nombre</th>
+              <th scope="col"><fa-icon [icon]="faAddressBook"></fa-icon> Apellido</th>
+              <th scope="col"><fa-icon [icon]="faMailBulk"></fa-icon> Email</th>
+              <th scope="col"><fa-icon [icon]="faCalendarAlt"></fa-icon> Fecha de nacimiento</th>
+              <th scope="col"><fa-icon [icon]="faCity"></fa-icon> Comuna</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cliente of listaClientesSpringBoot ; let indice = index">
+              <td>{{ indice + 1}}</td>
+              <td>{{ cliente.nombre }}</td>
+              <td>{{ cliente.apellido }}</td>
+              <td>{{ cliente.email }}</td>
+              <td>{{ cliente.createAt }}</td>
+              <td>{{ cliente.comuna }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+
+  <br><br><br>

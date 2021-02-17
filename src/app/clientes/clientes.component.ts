@@ -44,6 +44,7 @@ export class ClientesComponent  {
   //Así me evito tener que tener los arreglos y las listas en el componente.
   public Clientes : Cliente[] = this.nombreServicio.listaClientes;
   public comunas : string[] =  this.nombreServicio.comunas;
+  public listaClientesSpringBoot : Cliente[] = this.nombreServicio.listaClientesSpringBoot;
   public nombre : string = this.nombreServicio.nombre;
   public apellido : string = this.nombreServicio.apellido;
   public email : string = this.nombreServicio.email;
@@ -62,6 +63,7 @@ export class ClientesComponent  {
   public tabla: boolean = true;
   public textoBoton: string ="Ocultar Tabla";
   public tituloTabla: string = "Listado de clientes";
+  public tablaSpringBoot : boolean = false;
 
 
 
@@ -248,10 +250,20 @@ export class ClientesComponent  {
 
 
 
-//Prueba servicio HttpClient
+
+
+
+
+
+
+
+// ############## INICIO METODOS DE HTTP REQUEST #####################
 requestHttp(){
   this.nombreServicio.requestHttpSpringBoot();
+//Se muestra la tabla
+  this.tablaSpringBoot = true;
 }
+// ############## FIN METODOS DE HTTP REQUEST #####################
 
 
 

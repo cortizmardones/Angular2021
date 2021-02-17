@@ -23,6 +23,8 @@ export class dataService {
     {id: 9 , nombre : 'Elias' , apellido : 'Sanchez' , email : 'esanchez@gmail.com' , createAt : '1993-04-15', comuna : 'Maipú'}
   ];
 
+  public listaClientesSpringBoot : Cliente [] = [];
+
   public comunas : string[] = ['Cerrillos', 'Cerro Navia', 'Conchalí', 'El Bosque', 'Estación Central', 'Huechuraba', 'Independencia', 'La Cisterna', 'La Florida', 'La Granja','La Pintana', 'La Reina', 'Las Condes', 'Lo Barnechea', 'Lo Espejo', 'Lo Prado', 'Macul', 'Maipú', 'Ñuñoa', 'Pedro Aguirre Cerda', 'Peñalolén', 'Providencia', 'Pudahuel', 'Puente Alto', 'Quilicura', 'Quinta Normal', 'Recoleta', 'Renca', 'San Bernardo', 'San Joaquín', 'San Miguel', 'San Ramón', 'Santiago' , 'Vitacura'];
   public nombre : string = '';
   public apellido : string = '';
@@ -53,8 +55,15 @@ export class dataService {
 
   requestHttpSpringBoot(){
     this.http.get('http://localhost:8080/api/listarClientes')
-    .subscribe( (respuesta:any) =>{
-      console.log(respuesta);
+      .subscribe((respuesta:any) =>{
+        respuesta.forEach((element:any) => {
+          this.listaClientesSpringBoot.push(element);
+      });
+
+      //Ejemplo foreach xd
+      /*const array1 = ['a', 'b', 'c'];
+      array1.forEach(element => console.log(element));*/
+
     });
   }
 
